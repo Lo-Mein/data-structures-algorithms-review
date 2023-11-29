@@ -99,6 +99,11 @@ class Solution:
         return False
 ```
 
+#### Big O Analysis
+
+- **Time Complexity:** O(n)
+- **Space Complexity:** O(n)
+
 ## Two Pointers
 
 ## Sliding Window

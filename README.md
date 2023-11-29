@@ -33,21 +33,25 @@ Array is a linear data structure that is a collection of similar data types. It 
 
 #### When to Use Arrays
 
-- **Ordered Data:** Arrays are suitable for storing ordered data where the position of each element matters.
-- **Random Access:** Accessing elements by index allows for constant-time random access.
-- **Fixed Size:** When the size of the collection is known and doesn't change frequently, arrays are a good choice.
+- **Storing and accessing data:** Arrays are used to store and retrieve data in a specific order.
+- **Sorting:** Arrays can be used to sort data in ascending or descending order. Sorting algorithms such as bubble sort, merge sort, and quicksort rely heavily on arrays.
+- **Searching:** Arrays can be searched for specific elements using algorithms such as linear search and binary search.
+- **Matrices:** Arrays are used to represent matrices in mathematical computations such as matrix multiplication, linear algebra, and image processing.
+- **Stacks and Queues:** Arrays are used as the underlying data structure for implementing stacks and queues, which are commonly used in algorithms and data structures.
+- **Graphs:** Arrays can be used to represent graphs in computer science. Each element in the array represents a node in the graph, and the relationships between the nodes are represented by the values stored in the array.
 
 #### Advantages
 
 1. **Constant Time Access:** Accessing elements by index is done in constant time, O(1).
-2. **Memory Efficiency:** Arrays use contiguous memory, reducing memory overhead.
-3. **Simple and Intuitive:** The concept of arrays is straightforward and widely understood.
+2. **Memory Efficiency:** Arrays allow for fast data retrieval because the data is stored in contiguous memory locations
+3. **Fast data retrieval::** The concept of arrays is straightforward and widely understood.
 
 #### Disadvantages
 
 1. **Fixed Size:** Arrays have a fixed size, making it challenging to dynamically resize them.
 2. **Insertion and Deletion:** Inserting or deleting elements in the middle requires shifting elements, leading to a time-consuming operation.
-3. **Homogeneous Elements:** Arrays store elements of the same type, which might limit flexibility.
+3. **Memory allocation issues:** Allocating a large array can be problematic, particularly in systems with limited memory.
+4. **Limited data type support:** Arrays have limited support for complex data types such as objects and structures, as the elements of an array must all be of the same data type.
 
 ### Hashing
 
@@ -67,6 +71,33 @@ Hashing is a technique that maps data to a fixed-size array, providing efficient
 
 1. **Collision Handling:** Collisions may occur, and effective strategies (like chaining or open addressing) are needed to handle them.
 2. **Deterministic Output:** Hash functions provide deterministic output, which can lead to clustering of keys.
+
+### Problems
+
+#### [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
+
+#### Pseudocode
+
+// Create an empty set to store unique elements
+// Iterate through each element in the array
+// If the element is already in the set, it's a duplicate
+// Otherwise, add the element to the set
+// If the loop completes without finding duplicates, return false
+
+#### Code
+
+```
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        hashset = set()
+
+        for num in nums:
+            if num in hashset:
+                return True
+            hashset.add(num)
+
+        return False
+```
 
 ## Two Pointers
 

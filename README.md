@@ -78,11 +78,11 @@ Hashing is a technique that maps data to a fixed-size array, providing efficient
 
 #### Pseudocode
 
-// Create an empty set to store unique elements
-// Iterate through each element in the array
-// If the element is already in the set, it's a duplicate
-// Otherwise, add the element to the set
-// If the loop completes without finding duplicates, return false
+- Create an empty set to store unique elements
+- Iterate through each element in the array
+- If the element is already in the set, it's a duplicate
+- Otherwise, add the element to the set
+- If the loop completes without finding duplicates, return false
 
 #### Code
 

@@ -98,7 +98,27 @@ class Solution:
 
         return False
 ```
+#### [Two Sum](https://leetcode.com/problems/two-sum/)
 
+#### Pseudocode
+
+- Create an empty dictionary
+- Iterate through each element in the list of numbers
+- If the complement of the target is already found in the dictionary then return the index of the complement and the current index
+- Otherwise, add the element and its index to the dictionary
+
+#### Code
+
+```
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        required = {}
+        for i in range(len(nums)):
+            if target - nums[i] in required:
+                return [required[target - nums[i]],i]
+            else:
+                required[nums[i]]=i
+```
 #### Big O Analysis
 
 - **Time Complexity:** O(n)

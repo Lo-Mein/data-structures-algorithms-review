@@ -72,9 +72,11 @@ Hashing is a technique that maps data to a fixed-size array, providing efficient
 1. **Collision Handling:** Collisions may occur, and effective strategies (like chaining or open addressing) are needed to handle them.
 2. **Deterministic Output:** Hash functions provide deterministic output, which can lead to clustering of keys.
 
-### Problems
+---
 
-#### [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
+## Problems
+
+### [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
 
 #### Pseudocode
 
@@ -98,7 +100,32 @@ class Solution:
 
         return False
 ```
-#### [Two Sum](https://leetcode.com/problems/two-sum/)
+
+---
+
+### [Valid Anagram](https://leetcode.com/problems/valid-anagram)
+
+#### Pseudocode
+
+- In order for two strings to be a valid anagram, they must have the same length and contain the same characters
+- We can sort both strings and compare them to see if they are equal
+
+#### Code
+
+```
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(nlogn), where nnn is the length of the input strings. The dominant factor is the sorting operation.
+- **Space Complexity:** O(n), as additional space is used to store the character arrays.
+
+---
+
+### [Two Sum](https://leetcode.com/problems/two-sum/)
 
 #### Pseudocode
 
@@ -119,6 +146,7 @@ class Solution:
             else:
                 required[nums[i]]=i
 ```
+
 #### Big O Analysis
 
 - **Time Complexity:** O(n)

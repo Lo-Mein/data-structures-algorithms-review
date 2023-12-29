@@ -152,6 +152,47 @@ class Solution:
 - **Time Complexity:** O(n)
 - **Space Complexity:** O(n)
 
+---
+
+### [Group Anagrams](https://leetcode.com/problems/group-anagrams)
+
+#### Pseudocode
+
+- Create a dictionary to store the anagrams
+- Iterate through each string in the list of strings
+- Create a key for each string by counting the number of occurrences of each character
+- If the key already exists in the dictionary, append the string to the list of anagrams
+- Otherwise, create a new key and add the string to the list of anagrams
+- Return the values of the dictionary
+
+#### Code
+
+```
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        result = defaultdict(list)
+        print(result)
+
+        for string in strs:
+            key = [0] * 26
+
+            for char in string:
+                key[ord(char) - ord("a")] += 1
+
+            result[tuple(key)].append(string)
+
+        return result.values()
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(nk), where n is the length of the list of strings and k is the length of the longest string
+- **Space Complexity:** O(nk), as additional space is used to store the dictionary
+
+❌ Need to come back to this one
+
+---
+
 ## Two Pointers
 
 ## Sliding Window

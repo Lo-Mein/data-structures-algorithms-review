@@ -193,6 +193,46 @@ class Solution:
 
 ---
 
+### [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements)
+
+#### Pseudocode
+
+- Create a dictionary to store the frequency of each number
+- Create a list of lists to store the numbers with the same frequency
+- Iterate through the dictionary and append the numbers to the list of lists
+- Iterate through the list of lists in reverse order and append the numbers to the result
+- If the length of the result is equal to k, return the result
+
+#### Code
+
+```
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = {}
+        freq = [[] for i in range(len(nums) + 1)]
+
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+        for n, c in count.items():
+            freq[c].append(n)
+
+        result = []
+        for i in range(len(freq)-1, 0, -1):
+            for n in freq[i]:
+                result.append(n)
+                if len(result) == k:
+                    return result
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), where n is the length of the list of numbers
+- **Space Complexity:** O(n), as additional space is used to store the dictionary and the list of lists
+
+❌ Need to come back to this one
+
+---
+
 ## Two Pointers
 
 ## Sliding Window

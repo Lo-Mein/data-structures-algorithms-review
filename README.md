@@ -233,6 +233,44 @@ class Solution:
 
 ---
 
+### [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self)
+
+#### Pseudocode
+
+- Initialize a Solution Array of same size as input array with value.
+- Store Prefix and Postfix Product so far in variables.
+- Traverse the input array.
+- Before updating the values for each i, multiply current solution array value at i with the value of prefix i.e. multiply with prefix product of the previous i-1 elements.
+- Similarly, calculate the postfix product value for n-i-1 where n is length of input array at each iteration.
+- As in Step 4, before calculating the postfix for i'th value , multiply the solution_array[n-i-1] with the postfix product value i.e. products of input[i+1] to input[n-1].
+
+#### Code
+
+```
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        result = [1] * len(nums)
+        prefix = 1
+        postfix = 1
+
+        for i in range(len(nums)):
+            result[i] *= prefix
+            prefix = prefix * nums[i]
+            result[len(nums)-i-1] *= postfix
+            postfix = postfix * nums[len(nums)-i-1]
+
+        return result
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), single pass
+- **Space Complexity:** O(1), as we are not supposed to count the output array.
+
+❌ Need to come back to this one
+
+---
+
 ## Two Pointers
 
 ## Sliding Window

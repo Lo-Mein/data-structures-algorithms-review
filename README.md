@@ -315,6 +315,53 @@ class Solution:
 
 ---
 
+### [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
+
+#### Pseudocode
+
+- Convert list to set using inbuilt set function.
+- Create low and high integer to store low and high values in ongoing sequence and assign low and high value to current value.
+- Run a while loop that continues till high + 1 or low - 1 is present in uniques set.
+  - If low - 1 is present in uniques, decrease value of low by 1, and remove low - 1 element from uniques.
+  - If high + 1 is present in uniques, increase value of high by 1. and remove high + 1 element from uniques.
+- As we keep on iterating, we will be left with empty set, thus stopping our while loop.
+
+#### Code
+
+```
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        nums_set = set(nums)
+        res = 0
+        while nums_set:
+            curr = nums_set.pop()
+            up, down = curr+1, curr-1
+            sequence_len = 1
+
+            while up in nums_set:
+                nums_set.remove(up)
+                up += 1
+            sequence_len += (up-curr-1)
+
+            while down in nums_set:
+                nums_set.remove(down)
+                down -= 1
+            sequence_len += (curr-down-1)
+
+            res = max(res, sequence_len)
+        return res
+
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n)
+- **Space Complexity:** O(n)
+
+❌ Need to come back to this one
+
+---
+
 ## Two Pointers
 
 ## Sliding Window

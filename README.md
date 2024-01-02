@@ -271,6 +271,50 @@ class Solution:
 
 ---
 
+### [Valid Sudoku](https://leetcode.com/problems/valid-sudoku)
+
+#### Pseudocode
+
+- We need to check for duplicate numbers 1-9 in each row, column, and 3x3 square
+- We can use a set to store the numbers in each row, column, and 3x3 square
+- Iterate through each element in the board
+- If the element is a ".", skip it
+- If the element is already in the set, return false
+- Otherwise, add the element to the set
+- If the loop completes without finding duplicates, return true
+
+#### Code
+
+```
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows = defaultdict(set)
+        cols = defaultdict(set)
+        squares = defaultdict(set)
+
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == ".":
+                    continue
+                if (board[r][c] in rows[r]) or (board[r][c] in cols[c]) or (board[r][c] in squares[(r//3,c//3)]):
+                    return False
+                rows[r].add(board[r][c])
+                cols[c].add(board[r][c])
+                squares[(r//3, c//3)].add(board[r][c])
+
+        return True
+
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(9^2), as we are iterating through each element in the board
+- **Space Complexity:** O(9^2), as we are storing each element in the board
+
+❌ Need to come back to this one
+
+---
+
 ## Two Pointers
 
 ## Sliding Window

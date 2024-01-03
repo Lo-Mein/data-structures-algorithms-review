@@ -406,6 +406,40 @@ class Solution:
 
 ---
 
+### [Two Sum II - Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+
+#### Pseudocode
+
+- Create two pointers, one at the beginning of the array and one at the end
+- Iterate through the array
+- If the sum of the elements at the left and right pointers is equal to the target, return the indices
+- Since the array is sorted, we can increment and decrement the pointers based on the sum of the elements
+
+#### Code
+
+```
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        l, r = 0, len(numbers) - 1
+
+        while l < r:
+            added = numbers[l] + numbers[r]
+            if added == target:
+                return [l+1, r+1]
+            elif added > target:
+                r -= 1
+            else:
+                l += 1
+
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), where n is the length of the string
+- **Space Complexity:** O(1), as we are not using any additional space
+
+---
+
 ## Sliding Window
 
 ## Stack

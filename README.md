@@ -364,6 +364,48 @@ class Solution:
 
 ## Two Pointers
 
+## Problems
+
+### [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
+
+#### Pseudocode
+
+- Create two pointers, one at the beginning of the string and one at the end
+- Iterate through the string
+- If the character at the left pointer is not alphanumeric, increment the left pointer
+- If the character at the right pointer is not alphanumeric, decrement the right pointer
+  - NOTE: if we dont want to use built in isalnum() function, we can use ord() to check if the character is alphanumeric a-z, A-Z, 0-9
+- If the characters at the left and right pointers are not equal, return false
+- If the loop completes without finding any non-matching characters, return true
+
+#### Code
+
+```
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l, r = 0, len(s) - 1
+
+        while l < r:
+            while l < r and not s[l].isalnum():
+                l+=1
+            while l < r and not s[r].isalnum():
+                r-=1
+            if s[l].lower() != s[r].lower():
+                return False
+            l,r = l+1, r-1
+
+
+        return True
+
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), where n is the length of the string
+- **Space Complexity:** O(1), as we are not using any additional space
+
+---
+
 ## Sliding Window
 
 ## Stack

@@ -492,6 +492,42 @@ class Solution:
 
 ---
 
+### [Container With Most Water](https://leetcode.com/problems/container-with-most-water)
+
+#### Pseudocode
+
+- Create two pointers, one at the beginning of the array and one at the end
+- Iterate through the array
+- Calculate the area of the container using the minimum height of the two pointers and the distance between the two pointers
+- since we want to maximize the area, we can move the pointer with the smaller height
+- Return the maximum area
+
+#### Code
+
+```
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        max_water = 0
+        l,r = 0, len(height) -1
+
+        while l < r:
+            curr_area = min(height[l], height[r]) * (r - l)
+            max_water = max(max_water, curr_area)
+
+            if height[l] > height[r]:
+                r -= 1
+            else:
+                l += 1
+        return max_water
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), where n is the length of the array
+- **Space Complexity:** O(1), as we are not using any additional space
+
+---
+
 ## Sliding Window
 
 ## Stack

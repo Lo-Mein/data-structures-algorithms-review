@@ -435,8 +435,60 @@ class Solution:
 
 #### Big O Analysis
 
-- **Time Complexity:** O(n), where n is the length of the string
+- **Time Complexity:** O(n), where n is the length of the array
 - **Space Complexity:** O(1), as we are not using any additional space
+
+---
+
+### [3Sum](https://leetcode.com/problems/3sum)
+
+#### Pseudocode
+
+- Sort the array
+- Iterate through each element in the array, use enumerate to get the index and value
+- Since we want to avoid duplicates, if the current element is equal to the previous element, continue
+- Create two pointers, one at the current element + 1 and one at the end of the array
+- Now we can take a similar approach to the two sum problem
+- If the sum of the current element, left pointer, and right pointer is equal to 0, append the elements to the result
+  - increment the left pointer (could be either the right or left pointer)
+  - while the left pointer is less than the right pointer and the left pointer is equal to the previous element, increment the left pointer
+- If the sum is greater than 0, decrement the right pointer
+- If the sum is less than 0, increment the left pointer
+- Return the result
+
+#### Code
+
+```
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+
+        for i, num in enumerate(nums):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+
+            l, r = i+1, len(nums) -1
+            while l < r:
+                three_sum = num + nums[l] + nums[r]
+
+                if three_sum == 0:
+                    res.append([num, nums[l], nums[r]])
+                    l += 1
+                    while nums[l] == nums[l-1] and l < r:
+                        l += 1
+                elif three_sum > 0:
+                    r -= 1
+                else:
+                    l += 1
+        return res
+
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n^2), where n is the length of the array
+- **Space Complexity:** O(n), as we are using a list to store the results
 
 ---
 

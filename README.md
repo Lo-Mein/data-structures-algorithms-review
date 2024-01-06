@@ -528,6 +528,51 @@ class Solution:
 
 ---
 
+### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+
+#### Pseudocode
+
+- Create two pointers, one at the beginning of the array and one at the end
+- create two variables to store the maximum height of the left and right pointers, this will be used to calculate the amount of water that can be trapped
+- while the left pointer is less than the right pointer
+  - if the maximum height of the left pointer is less than the maximum height of the right pointer
+    - increment the left pointer
+    - update the maximum height of the left pointer
+    - add the difference between the maximum height of the left pointer and the height of the left pointer to the result
+  - otherwise
+    - decrement the right pointer
+    - update the maximum height of the right pointer
+    - add the difference between the maximum height of the right pointer and the height of the right pointer to the result
+
+#### Code
+
+```
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height: return 0
+        l,r = 0, len(height)-1
+        l_max,r_max = height[l],height[r]
+        res = 0
+
+        while l < r:
+            if l_max < r_max:
+                l += 1
+                l_max = max(l_max, height[l])
+                res += l_max - height[l]
+            else:
+                r -= 1
+                r_max = max(r_max, height[r])
+                res += r_max - height[r]
+        return res
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), where n is the length of the array
+- **Space Complexity:** O(1), as we are not using any additional space
+
+---
+
 ## Sliding Window
 
 ## Stack

@@ -573,6 +573,44 @@ class Solution:
 
 ---
 
+### [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+
+#### Pseudocode
+
+- Create two pointers, one at the beginning of the array and one at the next element
+- Iterate through the array
+- If the element at the left pointer is less than the element at the right pointer, calculate the profit
+- If the profit is greater than the maximum profit, update the maximum profit
+- If the element at the left pointer is greater than the element at the right pointer, update the left pointer to the right pointer
+- Return the maximum profit
+
+#### Code
+
+```
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        l, r = 0,1
+        max_profit = 0
+
+        while r < len(prices):
+            if prices[l] < prices[r]:
+                profit = prices[r] - prices[l]
+                max_profit = max(max_profit, profit)
+            else:
+                l = r
+            r +=1
+
+
+        return max_profit
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), where n is the length of the array
+- **Space Complexity:** O(1), as we are not using any additional space
+
+---
+
 ## Sliding Window
 
 ## Stack

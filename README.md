@@ -573,6 +573,10 @@ class Solution:
 
 ---
 
+## Sliding Window
+
+## Problems
+
 ### [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
 #### Pseudocode
@@ -611,36 +615,101 @@ class Solution:
 
 ---
 
-## Sliding Window
+### [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+
+#### Pseudocode
+
+- Create a set to store the characters seen so far
+- iterate through the string
+- if the character is already in the set, remove the character at the left pointer from the set and increment the left pointer
+- otherwise, add the character to the set and update the longest substring
+- return the longest substring
+
+#### Code
+
+```
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        longest = 0
+        l = 0
+        char_set = set()
+
+        for r in range(len(s)):
+            while s[r] in char_set:
+                char_set.remove(s[l])
+                l += 1
+            char_set.add(s[r])
+            longest = max(longest, r-l+1)
+
+        return longest
+
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), where n is the length of the string
+- **Space Complexity:** O(n), as we are using a set to store the characters
+
+---
 
 ## Stack
 
+## Problems
+
 ## Binary Search
+
+## Problems
 
 ## Linked List
 
+## Problems
+
 ## Trees
+
+## Problems
 
 ## Tries
 
+## Problems
+
 ## Heap / Priority Queue
+
+## Problems
 
 ## Backtracking
 
+## Problems
+
 ## Graphs
+
+## Problems
 
 ## Advanced Graphs
 
+## Problems
+
 ## 1-D Dynamic Programming
+
+## Problems
 
 ## 2-D Dynamic Programming
 
+## Problems
+
 ## Greedy
+
+## Problems
 
 ## Intervals
 
+## Problems
+
 ## Math & Geometry
 
+## Problems
+
 ## Bit Manipulation
+
+## Problems
 
 ---

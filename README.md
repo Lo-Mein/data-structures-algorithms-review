@@ -490,6 +490,8 @@ class Solution:
 - **Time Complexity:** O(n^2), where n is the length of the array
 - **Space Complexity:** O(n), as we are using a list to store the results
 
+❌ Need to come back to this one
+
 ---
 
 ### [Container With Most Water](https://leetcode.com/problems/container-with-most-water)
@@ -649,6 +651,140 @@ class Solution:
 
 - **Time Complexity:** O(n), where n is the length of the string
 - **Space Complexity:** O(n), as we are using a set to store the characters
+
+❌ Need to come back to this one
+
+---
+
+### [Permutation in String](https://leetcode.com/problems/permutation-in-string/)
+
+#### Pseudocode
+
+- Since we are looking for a permutation, we can use a sliding window to check if the characters in the window match the characters in the target string
+- Since the matching characters can be in any order, we can use a hashmap/array to store the frequency of each character in the target string
+- First we need to check if the length of the target string is greater than the length of the input string, if it is, return false
+- Next, add the first len(s1) characters to the frequency arrays
+- Then, we need to get a baseline for the number of matching characters, we can do this by comparing the frequency array to the frequency array of the target string
+- If the frequency arrays match, increment the matches variable
+- Now we can iterate through the rest of the string (s2), using a sliding window of length len(s1)
+- While the two pointers are sliding through the string (s2), we update the frequency arrays and the matches variable
+  - We can get the index of the character at the right pointer by subtracting the ascii value of the character by the ascii value of "a"
+  - Check the frequencies at that index match, if yes increment the matches variable
+
+#### Code
+
+```
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        if len(s1) > len(s2): return False
+
+        s1_count, s2_count = [0] * 26, [0] * 26
+
+        for i in range(len(s1)):
+            s1_count[ord(s1[i]) - ord('a')] += 1
+            s2_count[ord(s2[i]) - ord('a')] += 1
+
+        matches = 0
+        for i in range(26):
+            matches += (1 if s1_count[i] == s2_count[i] else 0)
+
+        l = 0
+        for r in range(len(s1), len(s2)):
+            if matches == 26: return True
+
+            index = ord(s2[r]) - ord('a')
+            s2_count[index] += 1
+            if s1_count[index] == s2_count[index]:
+                matches += 1
+            elif s1_count[index] + 1 == s2_count[index]:
+                matches -= 1
+
+            index = ord(s2[l]) - ord('a')
+            s2_count[index] -= 1
+            if s1_count[index] == s2_count[index]:
+                matches += 1
+            elif s1_count[index] - 1 == s2_count[index]:
+                matches -= 1
+            l += 1
+        return matches == 26
+
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), where n is the length of the string
+- **Space Complexity:** O(1), as we are not using any additional space
+
+❌ Need to come back to this one
+
+---
+
+### [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
+
+#### Pseudocode
+
+- Create two dictionaries, one to store the frequency of each character in the target string and one to store the frequency of each character in the window
+- Create two variables to store the number of unique characters in the target string and the number of unique characters in the window
+- Create two variables to store the left and right pointers
+- Create a variable to store the length of the minimum window
+- Create a variable to store the start index of the minimum window
+- Iterate through the target string and add the frequency of each character to the target dictionary
+- Iterate through the string
+  - If the character at the right pointer is in the target dictionary, add the character to the window dictionary
+  - If the frequency of the character in the window dictionary is equal to the frequency of the character in the target dictionary, increment the number of unique characters in the window
+  - If the number of unique characters in the window is equal to the number of unique characters in the target string, we have a valid window
+    - While the number of unique characters in the window is equal to the number of unique characters in the target string
+      - If the length of the window is less than the minimum window, update the minimum window length and the start index of the minimum window
+      - If the character at the left pointer is in the target dictionary, decrement the frequency of the character in the window dictionary
+      - If the frequency of the character in the window dictionary is less than the frequency of the character in the target dictionary, decrement the number of unique characters in the window
+      - Increment the left pointer
+  - Increment the right pointer
+
+#### Code
+
+```
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(t) > len(s): return ""
+        if t == "": return ""
+
+        t_count, window = {}, {}
+
+        for c in t:
+            t_count[c] = t_count.get(c, 0) + 1
+
+        have, need = 0, len(t_count)
+        res_len = float("infinity")
+        res = [-1, -1]
+
+        l = 0
+        for r in range(len(s)):
+            c = s[r]
+            window[c] = window.get(c, 0) + 1
+
+            if c in t_count and t_count[c] == window[c]:
+                have += 1
+
+            while have == need:
+                if (r-l+1) < res_len:
+                    res_len = r-l+1
+                    res = [l,r]
+
+                window[s[l]] -= 1
+                if s[l] in t_count and window[s[l]] < t_count[s[l]]:
+                    have -= 1
+                l += 1
+        l,r = res
+        return s[l:r+1] if res_len != float("infinity") else ""
+
+```
+
+#### Big O Analysis
+
+- **Time Complexity:** O(n), where n is the length of the string
+- **Space Complexity:** O(1), as we are not using any additional space
+
+❌ Need to come back to this one
 
 ---
 
